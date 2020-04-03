@@ -28,9 +28,13 @@
               "projects/angular-ui/src/assets"
             ],
             "styles": [
-              "projects/angular-ui/src/styles.scss"
+              "projects/angular-ui/src/styles.scss", 
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
