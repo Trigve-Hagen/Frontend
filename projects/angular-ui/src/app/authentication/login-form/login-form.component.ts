@@ -10,25 +10,29 @@ import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
 })
 
 export class LoginFormComponent implements OnInit {
-  faUserCircle = faUserCircle;
-  faLock = faLock;
-  items: any;
-  loginForm: FormGroup;
+  public faUserCircle = faUserCircle;
+  public faLock = faLock;
+  public loginForm: FormGroup;
+  public username: string;
+  public password: string;
 
   constructor(
     private authenticationService: AuthenticationService,
-    private formHandler: FormBuilder,
-  ) {
-    this.loginForm = this.formHandler.group({
-      username: '',
-      password: ''
-    });
-  }
+    private formHandler: FormBuilder
+  ) {  }
 
   ngOnInit() {
     this.loginForm = this.formHandler.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: [this.username, [
+        Validators.required,
+        Validators.minLength(1),
+        this.authenticationService.nameValidator()
+      ]],
+      password: [this.password, [
+        Validators.required,
+        Validators.minLength(8),
+        this.authenticationService.passwordValidator()
+      ]]
     });
   }
 
